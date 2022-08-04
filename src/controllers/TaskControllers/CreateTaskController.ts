@@ -1,11 +1,11 @@
 import express, { Request, Response } from "express";
 import { CreateTaskService } from "./../../services/TaskServices/CreateTaskService";
-import jwt from "jsonwebtoken";
+import { UserInterface } from "../../models/User";
 
 export class CreateTaskController {
   static async handle(req: Request, res: Response, next: express.NextFunction) {
     const { name, description } = req.body;
-    const { id: user_id } = req.user;
+    const { id: user_id } = req.user as UserInterface;
 
     try {
       const result = await CreateTaskService.execute(name, description, user_id);

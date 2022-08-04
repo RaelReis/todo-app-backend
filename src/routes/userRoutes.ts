@@ -4,16 +4,16 @@ import { ListUserController } from "../controllers/UserControllers/ListUserContr
 import { RegisterUserController } from "../controllers/UserControllers/RegisterUserController";
 import { DeleteUserController } from "../controllers/UserControllers/DeleteUserController";
 import { LoginUserController } from "../controllers/UserControllers/LoginUserController";
-import { authMiddlewares } from "./middlewares/auth";
-import errorHandler from "./middlewares/errorsMiddleware";
+import { authMiddlewares } from "../middlewares/auth";
+import { mongooseErrorHandler } from "../middlewares/mongooseErrorHandler";
 
 const router = express.Router();
 
 router
   .get("/user", ListUserController.handle)
-  .get("/user/:username", GetUserByUsernameController.handle, errorHandler)
-  .post("/user/register", RegisterUserController.handle, errorHandler)
-  .post("/user/login", authMiddlewares.local, LoginUserController.handle, errorHandler)
-  .delete("/user/:id", authMiddlewares.bearer, DeleteUserController.handle, errorHandler);
+  .get("/user/:username", GetUserByUsernameController.handle, mongooseErrorHandler)
+  .post("/user/register", RegisterUserController.handle, mongooseErrorHandler)
+  .post("/user/login", authMiddlewares.local, LoginUserController.handle, mongooseErrorHandler)
+  .delete("/user/:id", authMiddlewares.bearer, DeleteUserController.handle, mongooseErrorHandler);
 
 export default router;

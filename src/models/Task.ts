@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 
+export interface Task {
+  name: string;
+  description: string;
+  createdAt: Date;
+  user_id: string;
+}
+
 const taskSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, default: "" },

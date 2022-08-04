@@ -1,7 +1,20 @@
-import ErrorResponse from "../../utils/errorsResponse";
-import { Name } from "./errors";
+import ErrorResponse from "../utils/errorsResponse";
 
-const errorHandler = (err, req, res, next) => {
+export interface Name {
+  name: string;
+  message: string;
+  properties: Properties;
+  kind: string;
+  path: string;
+}
+
+export interface Properties {
+  message: string;
+  type: string;
+  path: string;
+}
+
+export const mongooseErrorHandler = (err, req, res, next) => {
   let error = { ...err };
 
   error.message = err.message;
@@ -25,5 +38,3 @@ const errorHandler = (err, req, res, next) => {
 
   res.status(error.statusCode || 500).json({ error: error.message || "Server Error" });
 };
-
-export default errorHandler;

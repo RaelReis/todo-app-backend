@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/RaelReis/todo-mobile-backend.git",
+  "repository": "https://github.com/RaelReis/todo-app-backend.git",
   "author": "Rafael Reis",
   "license": "MIT",
   "private": false,

@@ -4,9 +4,7 @@ import { createToken } from "../../utils/createJwt";
 
 export class LoginUserController {
   static async handle(req: Request, res: Response, next: express.NextFunction) {
-    const { username, password } = req.body;
-
-    console.log(req.user);
+    const { username } = req.body;
 
     const token = await LoginUserService.execute(username);
     res.set("Authorization", `Bearer ${token}`);

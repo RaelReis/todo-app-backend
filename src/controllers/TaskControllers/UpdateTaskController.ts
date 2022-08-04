@@ -1,9 +1,10 @@
 import { UpdateTaskService } from "../../services/TaskServices/UpdateTaskService";
 import express, { Request, Response } from "express";
+import { UserInterface } from "../../models/User";
 
 export class UpdateTaskController {
   static async handle(req: Request, res: Response, next: express.NextFunction) {
-    const { id: user_id } = req.user;
+    const { id: user_id } = req.user as UserInterface;
     const { id: task_id } = req.params;
     const { name, description } = req.body;
 
